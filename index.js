@@ -1,16 +1,13 @@
 class SortedList {
   constructor(items = []) {
     this.items = items;
-  this.length = this.items.length;
-  this.items.sort((a, b) => a - b);
+    this.length = this.items.length;
   }
 
   add(item) {
-    if (this.length === 0) {
-      throw new Error('EmptySortedList');
-    } else {
-      return Math.max(...this.items)
-    }
+    this.items.push(item);
+    this.items.sort((a, b) => a - b);
+    this.length = this.items.length;
   }
 
   get(pos) {
@@ -30,66 +27,24 @@ class SortedList {
   }
 
   min() {
-    for (i = 0, l = arr.length; i < l; i++) {
-      min = Math.min(min, arr[i])
-    }return this.items[0]
+    if (this.length === 0) {
+      throw new Error("EmptySortedList");
+    } else {
+      return Math.min(...this.items);
+    }
   }
 
   sum() {
-    let result = 0
-    if (this.length === 0) {
-      return 0
-    } else {
-      for (let i = 0; i < this.length; i++ ){
-        result += this.items[i]
-      }
-      return result;
-    }
+    return this.items.reduce((total, num) => total + num, 0);
   }
 
   avg() {
-    let result = 0
     if (this.length === 0) {
-      throw new Error('EmptySortedList');
+      throw new Error("EmptySortedList");
     } else {
-      for (let i = 0; i < this.length; i++ ){
-        result += this.items[i] / this.length
-      }
-      return result;
+      return this.sum() / this.length;
     }
   }
-}
-
-module.exports = SortedList;
-
-
-
-
-
-class SortedList {
-  constructor() {
-    
-  }
-  
-  add(item) {
-    
-  }
- 
-  get(pos) {
-    
-  }
-
-  max() {}
-
-  min() {
-    for (i = 0, l = arr.length; i < l; i++) {
-      min = Math.min(min, arr[i])
-    }return this.items[0]
-  }
-
-  sum() {}
-
-  avg() {}
-}
+};
 
 module.exports = SortedList;
